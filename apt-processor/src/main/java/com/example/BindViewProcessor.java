@@ -78,6 +78,9 @@ public class BindViewProcessor extends AbstractProcessor {
             //拿到 MainActivity 类名的全路径
             String fullClassName = typeElement.getQualifiedName().toString();
 
+
+            mMessager.printMessage(Diagnostic.Kind.NOTE, "typeElement--" + typeElement.toString());
+
             ClassCreatorProxy proxy = mProxyMap.get(fullClassName);
 
             if (proxy == null) {
@@ -114,6 +117,9 @@ public class BindViewProcessor extends AbstractProcessor {
                 mMessager.printMessage(Diagnostic.Kind.NOTE, "getProxyClassFullName..." + proxyInfo.getProxyClassFullName());
                 mMessager.printMessage(Diagnostic.Kind.NOTE, "getTypeElement..." + proxyInfo.getTypeElement());
 
+                //createSourceFile(1,2)
+                // 参数1:设置创建的类名:com.codelang.bindview.MainActivity_ViewBinding
+                // 参数2：com.codelang.bindview.MainActivity
                 JavaFileObject jfo = processingEnv.getFiler().createSourceFile(proxyInfo.getProxyClassFullName(), proxyInfo.getTypeElement());
                 Writer writer = jfo.openWriter();
                 writer.write(proxyInfo.generateJavaCode());
