@@ -1,0 +1,13 @@
+apply plugin: 'java'
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    //process
+    implementation 'com.google.auto.service:auto-service:1.0-rc3'
+    //生成java类
+    implementation 'com.squareup:javapoet:1.10.0'
+    implementation project(':apt-annotation')
+}
+
+sourceCompatibility = "1.7"
+targetCompatibility = "1.7"
